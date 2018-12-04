@@ -1,0 +1,14 @@
+def quick_sort(nums):
+    if len(nums) < 2:
+        return nums
+    else:
+        base_value = nums[0]
+        less = [ m for m in nums[1:] if m < base_value]
+        equal = [ w for w in nums if w == base_value]
+        greater = [ n for n in nums[1:] if n > base_value]
+        return quick_sort(less)+equal+quick_sort(greater)
+                
+
+nums=[5,3,1,7,9,8]
+aaa=quick_sort(nums)
+print aaa
