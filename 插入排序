@@ -1,0 +1,18 @@
+def insert_sort(nums):
+    sorted_list = []
+    for i in range(0,len(nums)):
+        if len(sorted_list) == 0:
+            sorted_list.append(nums[i])
+        else:
+            for j in range(len(sorted_list)-1,-1,-1):
+                if sorted_list[j]<=nums[i]:
+                    sorted_list.insert(j+1,nums[i])
+                    break
+                if j == 0:
+                    sorted_list.insert(0,nums[i])
+    nums[:] = sorted_list[:]       
+                
+
+nums=[5,3,1,7,9,8]
+insert_sort(nums)
+print nums
