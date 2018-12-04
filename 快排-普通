@@ -1,0 +1,26 @@
+def quick_sort(nums,start,end):
+    if start >= end:
+        return nums
+    left = start
+    right = end
+    flag_index = left
+    while left < right:
+        while right > left:
+            if nums[right] < nums[flag_index]:
+                nums[flag_index], nums[right] = nums[right],nums[flag_index]
+                flag_index = right
+                break
+            right -=1
+        while left < right:
+            if nums[left] > nums[flag_index]:
+                nums[flag_index], nums[left] = nums[left],nums[flag_index]
+                flag_index = left
+                break
+            left +=1
+    quick_sort(nums, start,flag_index)
+    quick_sort(nums,flag_index+1,end)
+        
+                
+nums=[5,3,1,7,9,8]
+quick_sort(nums,0,len(nums)-1)
+print nums
