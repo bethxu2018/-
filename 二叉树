@@ -1,0 +1,65 @@
+class Node(object):
+    def __init__(self,index):
+        self.item = index
+        self.left_child = None
+        self.right_child = None
+
+class BinaryTree(object):
+    def __init__(self):
+        self.root = None
+
+    def add(self,item):
+        node = Node(item)
+        if self.root is None:
+            self.root = node
+        else:
+            q=[self.root]
+            while True:
+                pop_node = q.pop(0)
+                if pop_node.left_child is None:
+                    pop_node.left_child = node
+                    return
+                elif pop_node.right_child is None:
+                    pop_node.right_child = node
+                    return
+                else:
+                    q.append(pop_node.left_child)
+                    q.append(pop_node.right_child)
+
+    def traverse(self):
+        if self.root is None:
+            return None
+        q=[self.root]
+        res =[self.root.item]
+        while q!=[]:
+            pop_node=q.pop(0)
+            if pop_node.left_child is not None:
+                q.append(pop_node.left_child)
+                res.append(pop_node.left_child.item)
+            if pop_node.right_child is not None:
+                q.append(pop_node.right_child)
+                res.append(pop_node.right_child.item)
+        return res
+    def preorder(self,root):
+        if root is None:
+            return []
+        result = [root.item]
+        left_item = self.preorder(root.left_child)
+        right_item = self.preorder(root.right_child)
+        return left_item + result + right_item
+    
+    def inorder(self,root):
+        if root is None:
+            return []
+        result = [root.item]
+        left_item = self.inorder(root.left_child)
+        right_item = self.inorder(root.right_child)
+        return left_item +result+right_item
+
+t = BinaryTree()
+for i in range(10):
+    t.add(i)
+
+
+print t.traverse()
+print t.inorder(t.root)
